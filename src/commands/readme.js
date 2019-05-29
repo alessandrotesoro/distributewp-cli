@@ -5,6 +5,10 @@ const {
 const utilities = require('../utilities')
 const inquirer = require('inquirer')
 const logSymbols = require('log-symbols')
+const jsonfile = require('jsonfile')
+const execa = require('execa');
+const Listr = require('listr');
+const {Observable} = require('rxjs');
 const svnQuestions = require('../common-questions')
 
 var questions = [{
@@ -20,12 +24,20 @@ class ReadmeCommand extends Command {
 
 		const pluginDirectory = process.cwd()
 		const readmeFile = `${pluginDirectory}/readme.txt`
+		const configFile = `${pluginDirectory}/distributewp.json`
 
-		if (utilities.fileExists(readmeFile)) {
+		if ( utilities.fileExists(readmeFile) && utilities.fileExists(configFile) ) {
 
 			await inquirer.prompt(allQuestions).then(answers => {
 
 				if (answers.confirm === true) {
+
+					var data = jsonfile.readFileSync(configFile)
+
+					const username = answers.username
+					const password = answers.password
+					const pluginSlug = data.plugin_slug
+					const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
 
 				}
 
@@ -33,7 +45,7 @@ class ReadmeCommand extends Command {
 
 		} else {
 
-			this.error('No readme.txt file has been found in this folder.')
+			this.error('No readme.txt or config file has been found in this folder.')
 
 		}
 
