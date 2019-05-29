@@ -6,6 +6,7 @@ const {
 const utilities = require('../utilities')
 const inquirer = require('inquirer')
 const jsonfile = require('jsonfile')
+const logSymbols = require('log-symbols')
 
 var questions = [{
 		type: 'input',
@@ -59,7 +60,7 @@ class InitCommand extends Command {
 				jsonfile.writeFileSync( configFile, answers, { spaces: 2 })
 			});
 
-			this.log( `Configuration file has been successfully created in folder ${pluginDirectory}/distributewp.json` )
+			this.log( logSymbols.success, `Configuration file has been successfully created in folder ${pluginDirectory}/distributewp.json` )
 
 		}
 
