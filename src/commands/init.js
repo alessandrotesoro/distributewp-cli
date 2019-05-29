@@ -4,17 +4,24 @@ const {
 } = require('@oclif/command')
 
 const utilities = require('../utilities')
-const inquirer = require('inquirer');
+const inquirer = require('inquirer')
+const jsonfile = require('jsonfile')
 
 var questions = [{
 		type: 'input',
 		name: 'plugin_slug',
-		message: "What's the slug of your plugin?"
+		message: "What's the slug of your plugin?",
+		validate: function validate(val){
+			return val !== '';
+		}
 	},
 	{
 		type: 'input',
 		name: 'deployment_folder',
 		message: "What's the folder you wish to deploy?",
+		validate: function validate(val){
+			return val !== '';
+		}
 	},
 	{
 		type: 'confirm',
@@ -25,6 +32,9 @@ var questions = [{
 		type: 'input',
 		name: 'assets_folder',
 		message: "What's the folder where assets are stored?",
+		validate: function validate(val){
+			return val !== '';
+		},
 		when: function (answers) {
 			return answers.deploy_assets;
 		}
@@ -45,8 +55,11 @@ class InitCommand extends Command {
 		} else {
 
 			await inquirer.prompt(questions).then(answers => {
-				console.log(JSON.stringify(answers, null, '  '));
+				const data = JSON.stringify(answers, null, '  ');
+				jsonfile.writeFileSync( configFile, answers, { spaces: 2 })
 			});
+
+			this.log( `Configuration file has been successfully created in folder ${pluginDirectory}/distributewp.json` )
 
 		}
 
