@@ -1,6 +1,5 @@
 const {
-	Command,
-	flags
+	Command
 } = require('@oclif/command')
 
 const utilities = require('../utilities')
@@ -12,7 +11,7 @@ var questions = [{
 		type: 'input',
 		name: 'plugin_slug',
 		message: "What's the slug of your plugin?",
-		validate: function validate(val){
+		validate: function validate(val) {
 			return val !== '';
 		}
 	},
@@ -20,7 +19,7 @@ var questions = [{
 		type: 'input',
 		name: 'deployment_folder',
 		message: "What's the folder you wish to deploy?",
-		validate: function validate(val){
+		validate: function validate(val) {
 			return val !== '';
 		}
 	},
@@ -33,7 +32,7 @@ var questions = [{
 		type: 'input',
 		name: 'assets_folder',
 		message: "What's the folder where assets are stored?",
-		validate: function validate(val){
+		validate: function validate(val) {
 			return val !== '';
 		},
 		when: function (answers) {
@@ -44,9 +43,6 @@ var questions = [{
 
 class InitCommand extends Command {
 	async run() {
-		const {
-			flags
-		} = this.parse(InitCommand)
 
 		const pluginDirectory = process.cwd()
 		const configFile = `${pluginDirectory}/distributewp.json`
@@ -56,11 +52,12 @@ class InitCommand extends Command {
 		} else {
 
 			await inquirer.prompt(questions).then(answers => {
-				const data = JSON.stringify(answers, null, '  ');
-				jsonfile.writeFileSync( configFile, answers, { spaces: 2 })
+				jsonfile.writeFileSync(configFile, answers, {
+					spaces: 2
+				})
 			});
 
-			this.log( logSymbols.success, `Configuration file has been successfully created in folder ${pluginDirectory}/distributewp.json` )
+			this.log(logSymbols.success, `Configuration file has been successfully created in folder ${pluginDirectory}/distributewp.json`)
 
 		}
 
