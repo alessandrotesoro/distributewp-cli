@@ -30,6 +30,8 @@ USAGE
 <!-- commands -->
 * [`distribute-wp hello`](#distribute-wp-hello)
 * [`distribute-wp help [COMMAND]`](#distribute-wp-help-command)
+* [`distribute-wp init`](#distribute-wp-init)
+* [`distribute-wp readme`](#distribute-wp-readme)
 
 ## `distribute-wp hello`
 
@@ -65,4 +67,34 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `distribute-wp init`
+
+Configure deployment from the current folder.
+
+```
+USAGE
+  $ distribute-wp init
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/init.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/init.js)_
+
+## `distribute-wp readme`
+
+Update the readme.txt file on WordPress.org with the one in the current working directory.
+
+```
+USAGE
+  $ distribute-wp readme
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/readme.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/readme.js)_
 <!-- commandsstop -->
