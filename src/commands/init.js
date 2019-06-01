@@ -6,6 +6,7 @@ const utilities = require('../utilities')
 const inquirer = require('inquirer')
 const jsonfile = require('jsonfile')
 const logSymbols = require('log-symbols')
+const path = require('path')
 
 var questions = [{
 		type: 'input',
@@ -13,6 +14,9 @@ var questions = [{
 		message: "What's the slug of your plugin?",
 		validate: function validate(val) {
 			return val !== '';
+		},
+		default: function() {
+			return path.basename(path.resolve(process.cwd()))
 		}
 	},
 	{
