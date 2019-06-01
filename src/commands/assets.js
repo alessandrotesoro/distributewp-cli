@@ -29,6 +29,16 @@ class AssetsCommand extends Command {
 
 			if ( data.deploy_assets === true && data.assets_folder ) {
 
+				const assetsFolder = `${pluginDirectory}/${data.assets_folder}`
+
+				if ( utilities.dirExists( assetsFolder ) ) {
+
+				} else {
+
+					this.error( `Could not find the assets folder at ${assetsFolder}.` )
+
+				}
+
 			} else {
 
 				this.error( 'This plugin was not configured for assets deployment. Delete the distributewp.json file and run distribute-wp init to configure the plugin for assets deployment.')
