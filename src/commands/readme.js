@@ -225,7 +225,7 @@ class ReadmeCommand extends Command {
 	}
 }
 
-ReadmeCommand.description = `Update the readme.txt file on WordPress.org with the one in the current working directory.
+ReadmeCommand.description = `Updates the readme.txt file on WordPress.org.
 ...
 Extra documentation goes here
 `

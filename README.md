@@ -28,10 +28,26 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`distribute-wp assets`](#distribute-wp-assets)
 * [`distribute-wp hello`](#distribute-wp-hello)
 * [`distribute-wp help [COMMAND]`](#distribute-wp-help-command)
 * [`distribute-wp init`](#distribute-wp-init)
 * [`distribute-wp readme`](#distribute-wp-readme)
+
+## `distribute-wp assets`
+
+Updates the plugin's assets on WordPress.org.
+
+```
+USAGE
+  $ distribute-wp assets
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/assets.js)_
 
 ## `distribute-wp hello`
 
@@ -85,7 +101,7 @@ _See code: [src/commands/init.js](https://github.com/alessandrotesoro/distribute
 
 ## `distribute-wp readme`
 
-Update the readme.txt file on WordPress.org with the one in the current working directory.
+Updates the readme.txt file on WordPress.org.
 
 ```
 USAGE
