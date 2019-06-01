@@ -218,7 +218,7 @@ class ReadmeCommand extends Command {
 
 		} else {
 
-			this.error( logSymbols.error, 'No readme.txt or config file has been found in this folder.')
+			this.error( 'No readme.txt or config file has been found in this folder.')
 
 		}
 

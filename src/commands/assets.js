@@ -27,7 +27,7 @@ class AssetsCommand extends Command {
 
 		} else {
 
-			this.error( logSymbols.error, 'No config file has been found in this folder. Please run distribute-wp init to configure this folder for deployment.')
+			this.error( 'No config file has been found in this folder. Please run distribute-wp init to configure this folder for deployment.')
 
 		}
 
