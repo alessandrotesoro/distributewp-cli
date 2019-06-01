@@ -48,7 +48,7 @@ class InitCommand extends Command {
 		const configFile = `${pluginDirectory}/distributewp.json`
 
 		if (utilities.fileExists(configFile)) {
-			this.error('This folder has already been configured for deployment. File distributewp.json already exists.')
+			this.error( logSymbols.error, 'This folder has already been configured for deployment. File distributewp.json already exists.')
 		} else {
 
 			await inquirer.prompt(questions).then(answers => {

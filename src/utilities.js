@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const fs = require('fs-extra')
 
 module.exports = {
@@ -22,5 +23,18 @@ module.exports = {
 		}
 
 	},
+
+	createTempFolder: function ( path, task = false ) {
+		try {
+
+			if ( task ) {
+				task.title = 'Successfully created temporary SVN folder'
+			}
+
+			return fs.removeSync( path ) && fs.ensureDirSync( path )
+		} catch (err) {
+			return err
+		}
+	}
 
 };
