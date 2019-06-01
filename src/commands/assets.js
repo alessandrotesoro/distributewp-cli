@@ -25,6 +25,16 @@ class AssetsCommand extends Command {
 
 		if ( utilities.fileExists(configFile) ) {
 
+			var data = jsonfile.readFileSync(configFile)
+
+			if ( data.deploy_assets === true && data.assets_folder ) {
+
+			} else {
+
+				this.error( 'This plugin was not configured for assets deployment. Delete the distributewp.json file and run distribute-wp init to configure the plugin for assets deployment.')
+
+			}
+
 		} else {
 
 			this.error( 'No config file has been found in this folder. Please run distribute-wp init to configure this folder for deployment.')
