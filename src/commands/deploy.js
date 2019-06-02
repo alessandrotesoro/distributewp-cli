@@ -8,6 +8,7 @@ const jsonfile = require('jsonfile')
 const logSymbols = require('log-symbols')
 const Listr = require('listr');
 const fs = require('fs-extra')
+const path = require('path')
 const {
 	Observable
 } = require('rxjs');
@@ -53,9 +54,16 @@ class DeployCommand extends Command {
 
 					const username = answers.username
 					const password = answers.password
+					const newVersion = answers.version
 					const pluginSlug = data.plugin_slug
 					const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
-					const tempSVNFolder = `${pluginDirectory}/tempsvn`
+
+					let tempSVNFolder = `${pluginDirectory}/tempsvn`
+					tempSVNFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
+
+					let deploymentFolder = `${pluginDirectory}/${data.deployment_folder}`
+					deploymentFolder = deploymentFolder.replace(/(\s+)/g, '\\$1')
+
 
 					const tasks = new Listr([
 						{
@@ -65,24 +73,11 @@ class DeployCommand extends Command {
 								return new Observable(observer => {
 
 									svnUltimate.commands.checkout( svnUrl, tempSVNFolder, {
-										trustServerCert: true,
 										depth: "immediates",
 									}, function( err ) {
 										if ( ! err ) {
-											svnUltimate.commands.update( tempSVNFolder,
-											{
-												username: username,
-												password: password,
-												params: [ '--set-depth infinity trunk' ],
-											},
-											function( err ) {
-												if ( ! err ) {
-													task.title = 'Successfully checked out .org repository'
-													observer.complete();
-												} else {
-													throw new Error( 'Something went wrong while checking out the .org repository.' );
-												}
-											} );
+											task.title = 'Successfully checked out .org repository'
+											observer.complete();
 										}
 									} );
 

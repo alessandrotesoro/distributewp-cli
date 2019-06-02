@@ -43,7 +43,9 @@ class ReadmeCommand extends Command {
 					const password = answers.password
 					const pluginSlug = data.plugin_slug
 					const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
-					const tempSVNFolder = `${pluginDirectory}/tempsvn`
+					let tempSVNFolder = `${pluginDirectory}/tempsvn`
+
+					tempSVNFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
 
 					const tasks = new Listr([
 						{
