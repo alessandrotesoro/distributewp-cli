@@ -192,6 +192,8 @@ class AssetsCommand extends Command {
 								this.error( err )
 							} );
 
+						} else {
+							this.error( 'Deployment aborted.' )
 						}
 
 					});

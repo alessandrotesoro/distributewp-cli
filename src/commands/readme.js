@@ -208,6 +208,8 @@ class ReadmeCommand extends Command {
 						this.error( err )
 					} );
 
+				} else {
+					this.error( 'Deployment aborted.' )
 				}
 
 			});
