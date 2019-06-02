@@ -29,6 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`distribute-wp assets`](#distribute-wp-assets)
+* [`distribute-wp deploy`](#distribute-wp-deploy)
 * [`distribute-wp help [COMMAND]`](#distribute-wp-help-command)
 * [`distribute-wp init`](#distribute-wp-init)
 * [`distribute-wp readme`](#distribute-wp-readme)
@@ -47,6 +48,21 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/assets.js)_
+
+## `distribute-wp deploy`
+
+Release a new version of a WordPress plugin.
+
+```
+USAGE
+  $ distribute-wp deploy
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/deploy.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/deploy.js)_
 
 ## `distribute-wp help [COMMAND]`
 
