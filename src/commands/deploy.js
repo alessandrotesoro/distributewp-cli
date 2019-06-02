@@ -57,13 +57,13 @@ class DeployCommand extends Command {
 					const newVersion = answers.version
 					const pluginSlug = data.plugin_slug
 					const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
+					const tempSVNFolder = `${pluginDirectory}/tempsvn`
+					const deploymentFolder = `${pluginDirectory}/${data.deployment_folder}`
+					const newTagDestFolder = `${tempSVNFolder}/tags/${newVersion}`
 
-					let tempSVNFolder = `${pluginDirectory}/tempsvn`
-					tempSVNFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
-
-					let deploymentFolder = `${pluginDirectory}/${data.deployment_folder}`
-					deploymentFolder = deploymentFolder.replace(/(\s+)/g, '\\$1')
-
+					if ( ! utilities.dirExists( deploymentFolder ) ){
+						this.error( `The deployment folder at ${deploymentFolder} could not be found.` )
+					}
 
 					const tasks = new Listr([
 						{
@@ -72,7 +72,7 @@ class DeployCommand extends Command {
 
 								return new Observable(observer => {
 
-									svnUltimate.commands.checkout( svnUrl, tempSVNFolder, {
+									svnUltimate.commands.checkout( svnUrl, tempSVNFolder.replace(/(\s+)/g, '\\$1'), {
 										depth: "immediates",
 									}, function( err ) {
 										if ( ! err ) {
@@ -80,6 +80,75 @@ class DeployCommand extends Command {
 											observer.complete();
 										}
 									} );
+
+								});
+
+							}
+						},
+						{
+							title: 'Creating new tag for the release...',
+							task: ( ctx, task ) => {
+
+								fs.copySync( deploymentFolder, newTagDestFolder )
+
+								task.title = 'Successfully created new tag folder'
+
+							}
+						},
+						{
+							title: 'Adding new tag to .org repository...',
+							task: ( ctx, task ) => {
+
+								return new Observable(observer => {
+
+									svnUltimate.commands.add( '.',
+										{
+											trustServerCert: true,
+											cwd: tempSVNFolder,		// override working directory command is executed
+											quiet: true,			// provide --quiet to commands that accept it
+											force: true,			// provide --force to commands that accept it
+										},
+										function( err ) {
+											if ( err ) {
+												throw new Error( 'Something went wrong while adding files.' );
+											} else {
+												task.title = 'Successfully added all files to SVN repository'
+												observer.complete();
+											}
+										} );
+
+								});
+
+							}
+						},
+						{
+							title: 'Committing tag to .org repository...',
+							task: ( ctx, task ) => {
+
+								return new Observable(observer => {
+
+
+								});
+
+							}
+						},
+						{
+							title: 'Deleting old trunk folder from .org repository...',
+							task: ( ctx, task ) => {
+
+								return new Observable(observer => {
+
+
+								});
+
+							}
+						},
+						{
+							title: 'Creating new trunk folder for the .org repository...',
+							task: ( ctx, task ) => {
+
+								return new Observable(observer => {
+
 
 								});
 
