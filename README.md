@@ -29,7 +29,6 @@ USAGE
 # Commands
 <!-- commands -->
 * [`distribute-wp assets`](#distribute-wp-assets)
-* [`distribute-wp hello`](#distribute-wp-hello)
 * [`distribute-wp help [COMMAND]`](#distribute-wp-help-command)
 * [`distribute-wp init`](#distribute-wp-init)
 * [`distribute-wp readme`](#distribute-wp-readme)
@@ -48,24 +47,6 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/assets.js)_
-
-## `distribute-wp hello`
-
-Describe the command here
-
-```
-USAGE
-  $ distribute-wp hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/hello.js)_
 
 ## `distribute-wp help [COMMAND]`
 
