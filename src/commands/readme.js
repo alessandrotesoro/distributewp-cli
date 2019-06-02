@@ -66,6 +66,7 @@ class ReadmeCommand extends Command {
 										if ( ! err ) {
 											svnUltimate.commands.update( tempSVNFolder,
 											{
+												trustServerCert: true,
 												username: username,
         										password: password,
 												params: [ '--set-depth infinity trunk' ],
@@ -119,6 +120,7 @@ class ReadmeCommand extends Command {
 
 											svnUltimate.commands.update( `${tempSVNFolder}/tags/${latestTag.name}`,
 											{
+												trustServerCert: true,
 												username: username,
 												password: password,
 												params: [ '--set-depth infinity trunk' ],
@@ -152,6 +154,7 @@ class ReadmeCommand extends Command {
 
 									svnUltimate.commands.add( '.',
 									{
+										trustServerCert: true,
 										cwd: tempSVNFolder,		// override working directory command is executed
 										quiet: true,			// provide --quiet to commands that accept it
 										force: true,			// provide --force to commands that accept it
@@ -179,6 +182,7 @@ class ReadmeCommand extends Command {
 
 									svnUltimate.commands.commit( null,
 										{
+											trustServerCert: true,
 											username: username,
 											password: password,
 											cwd: tempSVNFolder,
