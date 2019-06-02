@@ -51,14 +51,6 @@ class AssetsCommand extends Command {
 
 							const tasks = new Listr([
 								{
-									title: 'Creating temporary SVN folder...',
-									task: ( ctx, task ) => {
-
-										utilities.createTempFolder( tempSVNFolder, task )
-
-									}
-								},
-								{
 									title: 'Checking out .org repository...',
 									task: ( ctx, task ) => {
 
