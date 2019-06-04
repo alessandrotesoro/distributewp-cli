@@ -127,6 +127,24 @@ class DeployCommand extends Command {
 
 								return new Observable(observer => {
 
+									svnUltimate.commands.commit( null,
+										{
+											trustServerCert: true,
+											username: username,
+											password: password,
+											cwd: tempSVNFolder,
+											quiet: true,
+											params: [ '-m "Deployed with distributewp-cli" --no-auth-cache --non-interactive' ]
+										},
+										( err ) => {
+											if ( err ) {
+												throw new Error( err );
+											} else {
+												task.title = 'Commit complete'
+												observer.complete();
+											}
+										}
+									);
 
 								});
 
@@ -138,6 +156,24 @@ class DeployCommand extends Command {
 
 								return new Observable(observer => {
 
+									svnUltimate.commands.del( `${svnUrl}/trunk/`,
+										{
+											trustServerCert: true,
+											username: username,
+											password: password,
+											cwd: tempSVNFolder,
+											quiet: true,
+											params: [ '-m "Deployed with distributewp-cli" --no-auth-cache --non-interactive' ]
+										},
+										( err ) => {
+											if ( err ) {
+												throw new Error( err );
+											} else {
+												task.title = 'Deleted old trunk folder'
+												observer.complete();
+											}
+										}
+									);
 
 								});
 
@@ -149,6 +185,24 @@ class DeployCommand extends Command {
 
 								return new Observable(observer => {
 
+									svnUltimate.commands.copy( `${svnUrl}/tags/${newVersion}`, `${svnUrl}/trunk/`,
+										{
+											trustServerCert: true,
+											username: username,
+											password: password,
+											cwd: tempSVNFolder,
+											quiet: true,
+											params: [ '-m "Deployed with distributewp-cli" --no-auth-cache --non-interactive' ]
+										},
+										( err ) => {
+											if ( err ) {
+												throw new Error( err );
+											} else {
+												task.title = 'Successfully updated the trunk folder'
+												observer.complete();
+											}
+										}
+									);
 
 								});
 
