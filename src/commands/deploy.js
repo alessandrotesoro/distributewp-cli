@@ -198,6 +198,7 @@ class DeployCommand extends Command {
 											if ( err ) {
 												throw new Error( err );
 											} else {
+												fs.removeSync( tempSVNFolder )
 												task.title = 'Successfully updated the trunk folder'
 												observer.complete();
 											}
