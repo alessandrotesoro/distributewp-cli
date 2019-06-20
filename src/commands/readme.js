@@ -226,8 +226,6 @@ class ReadmeCommand extends Command {
 }
 
 ReadmeCommand.description = `Updates the readme.txt file on WordPress.org.
-...
-Extra documentation goes here
 `
 
 module.exports = ReadmeCommand

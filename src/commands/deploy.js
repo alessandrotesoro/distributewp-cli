@@ -237,8 +237,6 @@ class DeployCommand extends Command {
 }
 
 DeployCommand.description = `Release a new version of a WordPress plugin.
-...
-Extra documentation goes here
 `
 
 module.exports = DeployCommand

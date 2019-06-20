@@ -222,8 +222,6 @@ class AssetsCommand extends Command {
 }
 
 AssetsCommand.description = `Updates the plugin's assets on WordPress.org.
-...
-Extra documentation goes here
 `
 
 module.exports = AssetsCommand

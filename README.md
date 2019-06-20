@@ -24,6 +24,7 @@ The CLI will ask you the following questions:
 Deployment of new releases works by uploading the content of the folder you've specified when answering the 2nd configuration question.
 
 <!-- toc -->
+* [How it works](#how-it-works)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -56,10 +57,6 @@ Updates the plugin's assets on WordPress.org.
 ```
 USAGE
   $ distribute-wp assets
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/assets.js)_
@@ -71,10 +68,6 @@ Release a new version of a WordPress plugin.
 ```
 USAGE
   $ distribute-wp deploy
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src/commands/deploy.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/deploy.js)_
@@ -103,10 +96,6 @@ Configure deployment from the current folder.
 ```
 USAGE
   $ distribute-wp init
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src/commands/init.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/init.js)_
@@ -118,10 +107,6 @@ Updates the readme.txt file on WordPress.org.
 ```
 USAGE
   $ distribute-wp readme
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src/commands/readme.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/readme.js)_

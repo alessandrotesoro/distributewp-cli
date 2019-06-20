@@ -71,8 +71,6 @@ class InitCommand extends Command {
 }
 
 InitCommand.description = `Configure deployment from the current folder.
-...
-Extra documentation goes here
 `
 
 module.exports = InitCommand
