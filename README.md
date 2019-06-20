@@ -8,6 +8,21 @@ Command line interface that helps with the deployment of plugins on WordPress.or
 [![Downloads/week](https://img.shields.io/npm/dw/distributewp-cli.svg)](https://npmjs.org/package/distributewp-cli)
 [![License](https://img.shields.io/npm/l/distributewp-cli.svg)](https://github.com/alessandrotesoro/distributewp-cli/blob/master/package.json)
 
+# How it works
+
+DistributeWP deploys files and folders on your computer to the WordPress.org plugin's SVN repository. With this tool you can release new versions of plugins, update only the assets folder or update only the readme.txt file.
+
+DistributeWP requires .json file in your plugin's folder which contains all the settings required for deployment. This file can be created by running command `distribute-wp init` once you've answered a few questions, the configuration file will be automatically created for you.
+
+The CLI will ask you the following questions:
+
+- What's the slug of your plugin?
+- What's the folder you wish to deploy?
+- Do you wish to deploy plugin's assets too?
+- What's the folder where assets are stored?
+
+Deployment of new releases works by uploading the content of the folder you've specified when answering the 2nd configuration question.
+
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
