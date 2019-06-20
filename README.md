@@ -8,6 +8,14 @@ Command line interface that helps with the deployment of plugins on WordPress.or
 [![Downloads/week](https://img.shields.io/npm/dw/distributewp-cli.svg)](https://npmjs.org/package/distributewp-cli)
 [![License](https://img.shields.io/npm/l/distributewp-cli.svg)](https://github.com/alessandrotesoro/distributewp-cli/blob/master/package.json)
 
+<!-- toc -->
+* [How it works](#how-it-works)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
+
 # How it works
 
 DistributeWP deploys files and folders on your computer to the WordPress.org plugin's SVN repository. With this tool you can release new versions of plugins, update only the assets folder or update only the readme.txt file.
@@ -23,11 +31,18 @@ The CLI will ask you the following questions:
 
 Deployment of new releases works by uploading the content of the folder you've specified when answering the 2nd configuration question.
 
-<!-- toc -->
-* [How it works](#how-it-works)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+# Requirements
+
+- SVN on your computer.
+- Preapproved plugin on wordpress.org
+- Node.js
+
+# Installation
+
+```sh-session
+npm install -g distributewp-cli
+```
+
 # Usage
 <!-- usage -->
 ```sh-session
