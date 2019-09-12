@@ -1,7 +1,7 @@
 {
   "name": "distributewp-cli",
   "description": "Command line interface that helps with the deployment of plugins on WordPress.org",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Alessandro Tesoro @alessandrotesoro",
   "bin": {
     "distribute-wp": "./bin/run"
