@@ -45,8 +45,6 @@ class ReadmeCommand extends Command {
 					const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
 					let tempSVNFolder = `${pluginDirectory}/tempsvn`
 
-					tempSVNFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
-
 					const tasks = new Listr([
 						{
 							title: 'Checking out .org repository...',
@@ -54,25 +52,12 @@ class ReadmeCommand extends Command {
 
 								return new Observable(observer => {
 
-									svnUltimate.commands.checkout( svnUrl, tempSVNFolder, {
+									svnUltimate.commands.checkout( svnUrl, tempSVNFolder.replace(/(\s+)/g, '\\$1'), {
 										depth: "immediates",
 									}, function( err ) {
 										if ( ! err ) {
-											svnUltimate.commands.update( tempSVNFolder,
-											{
-												trustServerCert: true,
-												username: username,
-        										password: password,
-												params: [ '--set-depth infinity trunk' ],
-											},
-											function( err ) {
-												if ( ! err ) {
-													task.title = 'Successfully checked out .org repository'
-													observer.complete();
-												} else {
-													throw new Error( 'Something went wrong while checking out the .org repository.' );
-												}
-											} );
+											task.title = 'Successfully checked out .org repository'
+											observer.complete();
 										}
 									} );
 
@@ -106,13 +91,15 @@ class ReadmeCommand extends Command {
 
 								return new Observable(observer => {
 
-									svnUltimate.util.getLatestTag( `${tempSVNFolder}/trunk`, function( err, latestTag ) {
+									let latestTagTempSvnFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
+
+									svnUltimate.util.getLatestTag( `${latestTagTempSvnFolder}/trunk`, function( err, latestTag ) {
 
 										if ( err ) {
 											throw new Error( 'Something went wrong while detecting the latest tag.' );
 										} else {
 
-											svnUltimate.commands.update( `${tempSVNFolder}/tags/${latestTag.name}`,
+											svnUltimate.commands.update( `${latestTagTempSvnFolder}/tags/${latestTag.name}`,
 											{
 												trustServerCert: true,
 												username: username,
@@ -137,6 +124,37 @@ class ReadmeCommand extends Command {
 									} );
 
 								});
+
+							}
+						},
+						{
+							title: 'Updating readme.txt file in trunk...',
+							task: ( ctx, task ) => {
+
+								return new Observable(observer => {
+
+									let tempSVNTrunk = tempSVNFolder.replace(/(\s+)/g, '\\$1')
+
+									svnUltimate.commands.update( `${tempSVNTrunk}/trunk/readme.txt`,
+									{
+										trustServerCert: true,
+										cwd: tempSVNFolder,		// override working directory command is executed
+										quiet: true,			// provide --quiet to commands that accept it
+										force: true,			// provide --force to commands that accept it
+									},
+									function( err ) {
+
+										if ( err ) {
+											console.log(err)
+											throw new Error( 'Something went wrong while updating the readme.txt into the trunk folder.' );
+										} else {
+											task.title = 'Successfully updated readme.txt into the trunk folder'
+											observer.complete();
+										}
+
+									} );
+
+								} );
 
 							}
 						},
