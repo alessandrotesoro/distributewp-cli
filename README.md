@@ -50,7 +50,7 @@ $ npm install -g distributewp-cli
 $ distribute-wp COMMAND
 running command...
 $ distribute-wp (-v|--version|version)
-distributewp-cli/0.1.0 darwin-x64 node-v10.13.0
+distributewp-cli/0.1.1 darwin-x64 node-v12.8.1
 $ distribute-wp --help [COMMAND]
 USAGE
   $ distribute-wp COMMAND
@@ -74,7 +74,7 @@ USAGE
   $ distribute-wp assets
 ```
 
-_See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/assets.js)_
+_See code: [src/commands/assets.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.1/src/commands/assets.js)_
 
 ## `distribute-wp deploy`
 
@@ -85,7 +85,7 @@ USAGE
   $ distribute-wp deploy
 ```
 
-_See code: [src/commands/deploy.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/deploy.js)_
+_See code: [src/commands/deploy.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.1/src/commands/deploy.js)_
 
 ## `distribute-wp help [COMMAND]`
 
@@ -113,7 +113,7 @@ USAGE
   $ distribute-wp init
 ```
 
-_See code: [src/commands/init.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/init.js)_
+_See code: [src/commands/init.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.1/src/commands/init.js)_
 
 ## `distribute-wp readme`
 
@@ -124,5 +124,5 @@ USAGE
   $ distribute-wp readme
 ```
 
-_See code: [src/commands/readme.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.0/src/commands/readme.js)_
+_See code: [src/commands/readme.js](https://github.com/alessandrotesoro/distributewp-cli/blob/v0.1.1/src/commands/readme.js)_
 <!-- commandsstop -->
