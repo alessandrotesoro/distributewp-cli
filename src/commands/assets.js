@@ -49,8 +49,6 @@ class AssetsCommand extends Command {
 							const svnUrl = `https://plugins.svn.wordpress.org/${pluginSlug}`
 							let tempSVNFolder = `${pluginDirectory}/tempsvn`
 
-							tempSVNFolder = tempSVNFolder.replace(/(\s+)/g, '\\$1')
-
 							const tasks = new Listr([
 								{
 									title: 'Checking out .org repository...',
@@ -58,25 +56,12 @@ class AssetsCommand extends Command {
 
 										return new Observable(observer => {
 
-											svnUltimate.commands.checkout( svnUrl, tempSVNFolder, {
-												trustServerCert: true,
+											svnUltimate.commands.checkout( svnUrl, tempSVNFolder.replace(/(\s+)/g, '\\$1'), {
 												depth: "immediates",
 											}, function( err ) {
 												if ( ! err ) {
-													svnUltimate.commands.update( tempSVNFolder,
-													{
-														username: username,
-														password: password,
-														params: [ '--set-depth infinity trunk' ],
-													},
-													function( err ) {
-														if ( ! err ) {
-															task.title = 'Successfully checked out .org repository'
-															observer.complete();
-														} else {
-															throw new Error( 'Something went wrong while checking out the .org repository.' );
-														}
-													} );
+													task.title = 'Successfully checked out .org repository'
+													observer.complete();
 												}
 											} );
 
@@ -102,6 +87,9 @@ class AssetsCommand extends Command {
 											function( err ) {
 
 												if ( err ) {
+
+													console.log(err)
+
 													throw new Error( 'Something went wrong while cleaning up assets directory.' );
 												} else {
 													task.title = 'Successfully cleaned up SVN assets directory'
@@ -140,6 +128,7 @@ class AssetsCommand extends Command {
 											function( err ) {
 
 												if ( err ) {
+													console.log(err)
 													throw new Error( 'Something went wrong while adding files.' );
 												} else {
 													task.title = 'Successfully added all files to SVN repository'
